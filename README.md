@@ -1,5 +1,7 @@
 # boolean-uk-react-brewery-tours
 
+<img src="./_images/breweries-tour-react.gif?raw=true" width="1000px">
+
 ### Setup
 1. Fork this repository
 2. Clone your forked repository
