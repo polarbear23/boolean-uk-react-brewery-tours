@@ -1,21 +1,20 @@
-# boolean-uk-react-brewery-tours
+# React Brewery Tours
 
-<img src="./_images/breweries-tour-react.gif?raw=true" width="1000px">
+![Brewery Tours example](./images/breweries-tour-react.gif)
 
-### Setup
+You're revisiting the brewery tours javascript exercise to practice some more React concepts.
+
+This exercise gives you another opportunity to interact with an API. It also requires you to use `useEffect` and use more forms.
+
+## Setup
+
 1. Fork this repository
-2. Clone your forked repository
-3. In the project directory run `npm install` to install project dependencies
+2. Clone the forked repository onto your local machines
+3. In the root directory, type `npm install`, which installs dependencies for the project
+4. Finally, type `npm run start`, which starts a development server that runs your website in the browser. That server will reload your website whenever you make any changes to source files
 
-```sh
-$ npm install # install project dependencies
-$ npm start # run the application
-```
+## Deliverables
 
-**Description**
-We're revisiting this exercise so we can practice some extra concepts that were introduced so far. You will have the opportunity to interact with an API again, and use `useEffect` as well as building more forms and use them together with the rest of your app!
-
-**Deliverables**
 - A user can enter a US state and view a list of breweries in that state
 	- The list has a maximum of 10 breweries on display
 	- The list has three types of breweries that offer brewery tours:
@@ -40,7 +39,8 @@ We're revisiting this exercise so we can practice some extra concepts that were 
 	- Name
 	- City
 
-**Instructions**
+## Instructions
+
 - Start a json-server **with a different port than the React server**, use the following command `json-server --watch db.json -p 4000`
 - Read the "Open Brewery DB" documentation: https://www.openbrewerydb.org/documentation/01-listbreweries
 - Think about which request type to use
@@ -48,7 +48,8 @@ We're revisiting this exercise so we can practice some extra concepts that were 
 - When a form is submitted, its data should be saved in the json-server
 - Render the side section with all the filter options. When applied, the main section should immediately render the filtered list
 
-**Tips**
+## Tips
+
 - Start with the logic first, use `console.log(state)` to check your logic is working; when the logic is working as expected move on to styling
 - Use a `cleanData` function to modify the data in the fetch request before adding it to its corresponding state
 - Use an `extractCitiesData` function to extract the cities from the data in the fetch request and add it to state for the 'filter by city' section
@@ -56,8 +57,10 @@ We're revisiting this exercise so we can practice some extra concepts that were 
 - For filter by city use a list of `checkbox` elements to capture user input
 - For the booking form, use a `date` and `time` input
 
-**Challenge**
+## Extra Challenge 1
+
 - Add pagination to the list; if the list of breweries is greater than 10 a user can go to the next page to view more breweries
 
-**Challenge 2**
+## Extra Challenge 2
+
 - Add a submitted bookings page; this page should replace the list and filters sections, and display all the bookings that were saved in the server. You should display each booking data and the respective brewery info. Create also an option to group the bookings by brewery, and display all bookings per brewery
