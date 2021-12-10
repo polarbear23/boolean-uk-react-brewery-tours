@@ -1,9 +1,10 @@
 import React from "react";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+  const { selectedState } = props;
   return (
     <>
-      <h1>List of Breweries from New York</h1>
+      <h1>List of Breweries from {selectedState}</h1>
       <header class="search-bar">
         <form id="search-breweries-form" autocomplete="off">
           <label for="search-breweries">

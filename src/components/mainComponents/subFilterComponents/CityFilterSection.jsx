@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import CityCheckbox from "./CityCheckbox";
 const CityFilterSection = (props) => {
-  const { breweries } = props;
+  const { selectedState, breweries, filters, setFilters } = props;
   const [cities, setCities] = useState([]);
 
   const extractCityData = (breweries) => {
@@ -16,7 +16,7 @@ const CityFilterSection = (props) => {
 
   useEffect(() => {
     setCities(extractCityData(breweries));
-  }, [breweries]);
+  }, [selectedState]);
 
   return (
     <>
@@ -26,7 +26,13 @@ const CityFilterSection = (props) => {
       </div>
       <form id="filter-by-city-form">
         {cities.map((city) => {
-          return <CityCheckbox city={city} />;
+          return (
+            <CityCheckbox
+              city={city}
+              filters={filters}
+              setFilters={setFilters}
+            />
+          );
         })}
       </form>
     </>
