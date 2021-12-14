@@ -7,6 +7,7 @@ const TypeFilterSection = (props) => {
     console.log(event);
     setFilters({
       breweryType: event.target.value,
+      search: filters.search,
       filterCities: filters.filterCities,
     });
   };

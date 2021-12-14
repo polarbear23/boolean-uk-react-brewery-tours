@@ -1,7 +1,14 @@
 import React from "react";
-
+import Form from "./bookingFormComponents/Form.jsx";
+import { useState } from "react";
 const BreweriesListItem = (props) => {
+  const [bookingForm, setBookingForm] = useState(false);
   const { brewery } = props;
+
+  const handleClick = () => {
+    setBookingForm(!bookingForm);
+  };
+
   return (
     <li>
       <h2>{brewery.name}</h2>
@@ -20,48 +27,19 @@ const BreweriesListItem = (props) => {
         <p>{brewery.phone}</p>
       </section>
       <section class="booking">
-        <button>Book a tour</button>
+        {!bookingForm && <button onClick={handleClick}>Book a tour</button>}
+        {bookingForm && <button onClick={handleClick}>Hide Form</button>}
       </section>
       <section class="link">
-        <a href={brewery.website_url} target="_blank">
-          Visit Website
-        </a>
+        {brewery.website_url && (
+          <a href={brewery.website_url} target="_blank">
+            Visit Website
+          </a>
+        )}
+        {!brewery.website_url && <a>No Website Available</a>}
       </section>
-      <section class="booking-form">
-        <h3>Book a tour:</h3>
-        <form>
-          <label>
-            First Name
-            <input type="text" name="firstName" value="" />
-          </label>
-          <label>
-            Last Name
-            <input type="text" name="lastName" value="" />
-          </label>
-          <label>
-            Tour date
-            <input type="date" name="date" value="" />
-          </label>
-          <label>
-            Time
-            <input
-              type="time"
-              name="time"
-              min="09:00"
-              max="18:00"
-              step="3600"
-              value=""
-            />
-          </label>
-          <label>
-            No. people
-            <input type="number" min="1" max="10" name="peopleCount" value="" />
-          </label>
-          <input type="submit" value="Book Now!" />
-        </form>
-      </section>
+      {bookingForm && <Form />}
     </li>
   );
 };
-
 export default BreweriesListItem;

@@ -12,6 +12,7 @@ const CityCheckbox = (props) => {
       console.log(filters.filterCities.some((cityName) => cityName === city));
       setFilters({
         breweryType: filters.breweryType,
+        search: filters.search,
         filterCities: [...newFilterCities],
       });
     }
@@ -23,6 +24,7 @@ const CityCheckbox = (props) => {
       console.log(filters.filterCities.some((cityName) => cityName === city));
       setFilters({
         breweryType: filters.breweryType,
+        search: filters.search,
         filterCities: [...newFilterCities],
       });
     }

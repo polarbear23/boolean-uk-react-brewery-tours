@@ -1,28 +1,22 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import CityCheckbox from "./CityCheckbox";
 const CityFilterSection = (props) => {
-  const { selectedState, breweries, filters, setFilters } = props;
-  const [cities, setCities] = useState([]);
+  const { filters, setFilters, cities } = props;
 
-  const extractCityData = (breweries) => {
-    const citiesArray = breweries.map((brewery) => {
-      return brewery.city;
+  const handleClick = () => {
+    setFilters({
+      breweryType: filters.breweryType,
+      search: filters.search,
+      filterCities: [],
     });
-    console.log("cities", citiesArray);
-    const citiesNewData = [...new Set(citiesArray)];
-    return citiesNewData;
   };
-
-  useEffect(() => {
-    setCities(extractCityData(breweries));
-  }, [selectedState]);
-
   return (
     <>
       <div class="filter-by-city-heading">
         <h3>Cities</h3>
-        <button class="clear-all-btn">clear all</button>
+        <button class="clear-all-btn" onClick={handleClick}>
+          clear all
+        </button>
       </div>
       <form id="filter-by-city-form">
         {cities.map((city) => {

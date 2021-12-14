@@ -4,29 +4,56 @@ import ListSection from "./mainComponents/ListSection";
 import { useState, useEffect } from "react";
 const Main = (props) => {
   const { breweries, setBreweries, selectedState } = props;
+  const [cities, setCities] = useState([]);
   const [filters, setFilters] = useState({
     breweryType: "",
+    search: "",
     filterCities: [],
   });
 
+  const extractCityData = (breweries) => {
+    const citiesArray = breweries.map((brewery) => {
+      return brewery.city;
+    });
+    console.log("cities", citiesArray);
+    const citiesNewData = [...new Set(citiesArray)];
+    return citiesNewData;
+  };
+
   const cleanDataByFilters = (data) => {
     let filteredData = data;
+
+    if (filters.search.length > 0) {
+      filteredData = data.filter((brewery) => {
+        if (brewery.name.toUpperCase() === filters.search.toUpperCase()) {
+          return brewery;
+        } else if (
+          brewery.city.toUpperCase() === filters.search.toUpperCase()
+        ) {
+          return brewery;
+        }
+      });
+      setBreweries(filteredData);
+    }
+
     if (filters.breweryType.length > 0) {
       filteredData = data.filter(
         (brewery) => brewery.brewery_type === filters.breweryType
       );
+      setBreweries(filteredData);
     }
     if (filters.filterCities.length > 0) {
-      filteredData = data.filter((brewery) => {
+      filteredData = filteredData.filter((brewery) => {
         for (let i = 0; i < filters.filterCities.length; i++) {
           if (brewery.city === filters.filterCities[i]) {
             return brewery;
           }
+          return false;
         }
       });
+      setBreweries(filteredData);
     }
-
-    return filteredData;
+    setBreweries(filteredData);
   };
 
   const cleanData = (data) => {
@@ -52,8 +79,8 @@ const Main = (props) => {
       .then((res) => res.json())
       .then((data) => {
         const newData = cleanData(data);
-        const filteredData = cleanDataByFilters(newData);
-        setBreweries(filteredData);
+        cleanDataByFilters(newData);
+        setCities(extractCityData(newData));
       });
   }, [filters, selectedState]);
 
@@ -64,9 +91,15 @@ const Main = (props) => {
         setFilters={setFilters}
         filters={filters}
         selectedState={selectedState}
+        cities={cities}
       />
 
-      <ListSection breweries={breweries} selectedState={selectedState} />
+      <ListSection
+        breweries={breweries}
+        selectedState={selectedState}
+        setFilters={setFilters}
+        filters={filters}
+      />
     </main>
   );
 };

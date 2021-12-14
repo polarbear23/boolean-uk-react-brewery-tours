@@ -234,3 +234,24 @@ article {
   text-decoration: none;
   font-weight: bold;
 }
+.booking-form {
+  display: grid;
+  grid-auto-rows: auto;
+  gap: 5px;
+}
+.first-name {
+  font-weight: bold;
+  padding-right: 5px;
+}
+.last-name {
+  font-weight: bold;
+}
+.tour-date {
+  font-weight: bold;
+}
+.tour-no-of-people {
+  font-weight: bold;
+}
+.tour-time {
+  font-weight: bold;
+}
